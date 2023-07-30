@@ -1,14 +1,13 @@
-﻿// Задайте двумерный массив. Напишите программу, которая
-// упорядочит по убыванию элементы каждой строки двумерного массива.
+﻿// Задайте прямоугольный двумерный массив. Напишите
+// программу, которая будет находить строку с наименьшей суммой элементов.
 
 int rows = GetNum("Введите количество строк: ");
 int colums = GetNum("Введите количество столбцов: ");
-if (rows > 0 && colums > 0)
+if (rows > 0 && colums > 0 && rows != colums)
 {
     int[,] arrayRandom = GetArray(rows, colums);
     PrintArray(arrayRandom);
-    Console.WriteLine("Упорядочим строки:");
-    PrintArray(GetSortRowsArray(arrayRandom));
+    Console.WriteLine($"Строка с наименьшей суммой элементов имеет индекс i = {GetIndexRowMinSumElement(arrayRandom)}.");
 }
 else Console.WriteLine("Введена некорректная размерность массива.");
 
@@ -45,23 +44,27 @@ void PrintArray(int[,] arr)
     }
 }
 
-int[,] GetSortRowsArray(int[,] matrix)
+int GetIndexRowMinSumElement(int[,] matrix)
 {
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int k = matrix.GetLength(1) - 1; k > 0; k--)
+    int index = 0;
+    int sum = 0;
+        for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            for (int j = k; j < matrix.GetLength(1); j++)
-            {
-                if (matrix[i, j - 1] > matrix[i, j])
-                {
-                    int temp = matrix[i, j - 1];
-                    matrix[i, j - 1] = matrix[i, j];
-                    matrix[i, j] = temp;
-                }
-            }
+            sum += matrix[0,j];
         }
-
+    int sumTemp = sum;
+    for (int i = 1; i < matrix.GetLength(0); i++)
+    {
+        sum = 0;
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            sum += matrix[i,j];
+        }
+        if (sumTemp > sum)
+        {
+            index = i;
+            sumTemp = sum;
+        } 
     }
-    return matrix;
+    return index;
 }
