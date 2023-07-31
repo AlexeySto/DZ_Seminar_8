@@ -18,7 +18,7 @@ if (rowsMatrix1 > 0 && columsMatrix1 > 0)
     int[,] matrix1 = GetMatrix(rowsMatrix1, columsMatrix1);
     Console.WriteLine("Введите матрицу на которую будем перемножать :");
     int[,] matrix2 = GetMatrix(rowsMatrix2, columsMatrix2);
-    
+
     Console.Clear();
     PrintMatrix(matrix1);
     Console.WriteLine("   *");
@@ -26,7 +26,7 @@ if (rowsMatrix1 > 0 && columsMatrix1 > 0)
     Console.WriteLine("   =");
     PrintMatrix(GetMatrixMultiplication(matrix1, matrix2));
 }
-else Console.WriteLine("Введена некоректная размерность матрицы.");
+else Console.WriteLine("Введена некорректная размерность матрицы.");
 
 int GetNum(string message)
 {
