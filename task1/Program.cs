@@ -53,7 +53,7 @@ int[,] GetSortRowsArray(int[,] matrix)
         {
             for (int j = k; j < matrix.GetLength(1); j++)
             {
-                if (matrix[i, j - 1] > matrix[i, j])
+                if (matrix[i, j - 1] < matrix[i, j])
                 {
                     int temp = matrix[i, j - 1];
                     matrix[i, j - 1] = matrix[i, j];
